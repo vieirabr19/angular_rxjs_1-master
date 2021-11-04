@@ -13,7 +13,7 @@ export class AcoesService {
   getAcoes(valor?: string){
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
     return this.http.get<AcoesApi>('http://localhost:3000/acoes', { params }).pipe(
-      tap(valor => console.log(valor)),
+      tap(valor => console.log('VALOR DA API',valor)),
       pluck('payload'),
       map(acoes => acoes.sort((acaoA, acaoB) => this.ordenarPorCodigo(acaoA, acaoB)))
     )
